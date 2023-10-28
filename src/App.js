@@ -1,16 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './header/Header';
+import Home from './home/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">              
-        <h1>
-          catálago de filmes          
-        </h1>        
-      </header>
+    <div >                  
+        <Header/>
+        <Home/>
     </div>
   );
 }
 
 export default App;
+
+
+
