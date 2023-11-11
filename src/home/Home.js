@@ -2,10 +2,11 @@ import { Container } from "./style";
 import { MovieList } from "./style";
 import { Movie } from "./style";
 import { APIKEY } from "../config/key";
-import { useState } from "react";
 import { useState,useEffect } from "react";
 
 function Home() {
+
+    const img_path =  'https://image.tmdb.org/t/p/w500/'
 
     const [movies, setMovies] = useState([])
 
@@ -14,11 +15,15 @@ function Home() {
     useEffect(() => {
 
         
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=7c2360c02683262b3105631c3c27fd2f&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=en-US&page=1`)
+        .then(response => response.json())
+        .then(data => {
+            setMovies(data.results)
+        })
+    }, [])
+    
 
-    },[])
-
- /*   const movies = [
+    /*const movies = [
         {
             title: "Os Mercenários 4",
             Image_url: "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7D56cpIldaRRZzOnvXoe1spDiqD.jpg"
@@ -35,6 +40,7 @@ function Home() {
         }
     ]
     */
+    
     return (
         <Container>
             <h2>catálago</h2>
@@ -45,7 +51,7 @@ function Home() {
                         return (
                             <Movie>
                                 <a href="https:www.google.com">
-                                    <img src={movie.Image_url} alt={movie.title} />
+                                    <img src={`${img_path}${movie.poster_path}`} alt={movie.title} />
                                 </a>
                                 <span>{movie.title}</span>
                             </Movie>
