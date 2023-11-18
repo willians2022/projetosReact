@@ -15,7 +15,7 @@ function Home() {
     useEffect(() => {
 
         
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=pt-BR&page=1`)
         .then(response => response.json())
         .then(data => {
             setMovies(data.results)
@@ -50,7 +50,7 @@ function Home() {
                     movies.map(movie => {
                         return (
                             <Movie>
-                                <a href="https:www.google.com">
+                                <a href="#">
                                     <img src={`${img_path}${movie.poster_path}`} alt={movie.title} />
                                 </a>
                                 <span>{movie.title}</span>

@@ -2,7 +2,7 @@ import { Container } from "../home/style";
 import { container } from "./styles";
 
 
-function details (){
+function Details (){
     return (
         <container>
             <div className="movie">
@@ -12,3 +12,5 @@ function details (){
     )
 
 }
+
+export default Details ();
