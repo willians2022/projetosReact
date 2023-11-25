@@ -2,11 +2,13 @@ import { Container } from "./style";
 import { MovieList } from "./style";
 import { Movie } from "./style";
 import { APIKEY } from "../config/key";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 function Home() {
 
-    const img_path =  'https://image.tmdb.org/t/p/w500/'
+    const img_path = 'https://image.tmdb.org/t/p/w500/'
 
     const [movies, setMovies] = useState([])
 
@@ -14,14 +16,15 @@ function Home() {
 
     useEffect(() => {
 
-        
+
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=pt-BR&page=1`)
-        .then(response => response.json())
-        .then(data => {
-            setMovies(data.results)
-        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.result)
+                setMovies(data.results)
+            })
     }, [])
-    
+
 
     /*const movies = [
         {
@@ -40,7 +43,7 @@ function Home() {
         }
     ]
     */
-    
+
     return (
         <Container>
             <h2>catálago</h2>
@@ -49,10 +52,10 @@ function Home() {
                 {
                     movies.map(movie => {
                         return (
-                            <Movie>
-                                <a href="#">
+                            <Movie key={movie.id}>
+                                <Link to={`/details/${movie.id}`}>
                                     <img src={`${img_path}${movie.poster_path}`} alt={movie.title} />
-                                </a>
+                                </Link>
                                 <span>{movie.title}</span>
                             </Movie>
 
