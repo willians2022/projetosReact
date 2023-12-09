@@ -55,4 +55,13 @@ button{
 button:houver{
     background: #05848c2;
 }
+
+.trailer{    
+    margin-top: 50px;
+    text-align: center;
+    padding: 10px;
+    
+}
+
+
 `
