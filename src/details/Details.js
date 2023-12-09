@@ -2,12 +2,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { APIKEY } from "../config/key";
+import { Container } from "./styles";
+import { Link } from "react-router-dom";
 
-function Details(){
-    
+
+
+function Details() {
+
     const img_path = 'https://image.tmdb.org/t/p/w500/'
-   
-    const {id} = useParams();
+
+    const { id } = useParams();
     console.log(id);
 
     const [movie, setMovie] = useState([]);
@@ -24,7 +28,9 @@ function Details(){
                     title: data.title,
                     overview: data.overview,
                     releaseDate: data.release_date,
-                    poster_path:`${img_path}${data.poster_path}`
+                    vote_average:data.vote_average,
+                    vote_count:data.vote_count,
+                    poster_path: `${img_path}${data.poster_path}`
                 }
 
                 setMovie(movie)
@@ -33,14 +39,25 @@ function Details(){
 
 
     return (
-        <div >
-            <img src={movie.poster_path} alt={movie.title}/>
-            <h1>{movie.title}</h1>
-            <span>sinopse:{movie.overview}</span>
-            <span>Data de laçamento: {movie.releaseDate}</span>
-            <button>Retornar ao catálogo</button>
-        </div>
-       
+        <Container >
+
+            <div className="details">
+                <img src={movie.poster_path} alt={movie.title} />
+
+                <div className="info">
+                    <h1>{movie.title}</h1>
+                    <span >sinopse:{movie.overview}</span>
+                    <span className="release">Data de laçamento: {movie.releaseDate}</span>
+                    <span>Avaliação:{movie.vote_average}</span>
+                    <span>Likes:{movie.vote_count}</span>
+
+
+                    <Link to="/"><button>Retornar ao catálogo</button></Link>
+                </div>
+            </div>
+
+        </Container>
+
     )
 }
 

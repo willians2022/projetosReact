@@ -20,7 +20,7 @@ function Home() {
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=pt-BR&page=1`)
             .then(response => response.json())
             .then(data => {
-                console.log(data.result)
+                console.log(data.results)
                 setMovies(data.results)
             })
     }, [])
@@ -57,6 +57,9 @@ function Home() {
                                     <img src={`${img_path}${movie.poster_path}`} alt={movie.title} />
                                 </Link>
                                 <span>{movie.title}</span>
+
+
+
                             </Movie>
 
                         )
